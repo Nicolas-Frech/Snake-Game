@@ -34,7 +34,7 @@ const food = {
     x : randomPosition(), y : randomPosition(), color: "yellow"
 }
 
-let direction, loopId;
+let direction, loopId, segundos = 300;
 
 const drawFood = () => {
     ctx.shadowColor = food.color;
@@ -116,6 +116,9 @@ const checkEat = () => {
 
         food.x = x;
         food.y = y;
+        
+        segundos = segundos - 10;
+
     }
 }
 
@@ -141,6 +144,7 @@ const gameOver = () => {
     menu.style.display = "flex";
     finalScore.innerText = score.innerText;
     canvas.style.filter = "blur(2px)"
+    segundos = 300;
 }
 
 const gameLoop = () => {
@@ -156,7 +160,7 @@ const gameLoop = () => {
 
     loopId = setTimeout(() => {
         gameLoop();
-    }, 300)
+    }, segundos)
 }
 
 gameLoop();
